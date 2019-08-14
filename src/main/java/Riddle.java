@@ -1,4 +1,6 @@
 import java.util.*;
+import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 class Riddle {
 
@@ -43,28 +45,39 @@ class Riddle {
     static final List<Integer> LEVEL_ONE_OUTPUT = Arrays.asList(15, 26, 47, 86, 125, 335, 478, 700, 991, 1074, 2099, 3720, 3999, 4001, 4075, 5000, 6035, 9010, 10002, 11405, 12624, 46355, 67452, 74877, 87960, 99999);
 
     static List<Integer> solveLevelOne(Map<Character, Integer> map) {
-        //TODO: Use your imagination to produce the above output using the provided map.
-        return new ArrayList<>();
+        return new ArrayList<>(map.entrySet()).stream()
+                .sorted(Comparator.comparing(Entry::getValue))
+                .map(Entry::getValue)
+                .collect(Collectors.toList());
     }
 
     static final String LEVEL_TWO_OUTPUT = "mvfwdzayksnbhoqerucxpljtgi";
 
     static String solveLevelTwo(Map<Character, Integer> map) {
-        //TODO: Use your imagination to produce the above output using the provided map.
-        return "";
+        return new ArrayList<>(map.entrySet()).stream()
+                .sorted(Comparator.comparing(Entry::getValue))
+                .map(Entry::getKey)
+                .map(String::valueOf)
+                .collect(Collectors.joining());
     }
 
     static final String LEVEL_THREE_OUTPUT = "igtjlpxcureqohbnskyazdwfvm";
 
     static String solveLevelThree(Map<Character, Integer> map) {
-        //TODO: Use your imagination to produce the above output using the provided map.
-        return "";
+        return new ArrayList<>(map.entrySet()).stream()
+                .sorted(Comparator.comparing(Entry<Character, Integer>::getValue).reversed())
+                .map(Entry::getKey)
+                .map(String::valueOf)
+                .collect(Collectors.joining());
     }
 
     static final String LEVEL_FOUR_OUTPUT = "i*g*t*j*l*p*x*c*u*r*e*q*o*h*b*n*s*k*y*a*z*d*w*f*v*m";
 
     static String solveLevelFour(Map<Character, Integer> map) {
-        //TODO: Use your imagination to produce the above output using the provided map.
-        return "";
+        return new ArrayList<>(map.entrySet()).stream()
+                .sorted(Comparator.comparing(Entry<Character, Integer>::getValue).reversed())
+                .map(Entry::getKey)
+                .map(String::valueOf)
+                .collect(Collectors.joining("*"));
     }
 }
